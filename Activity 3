@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+class arithmetic
+{
+ int r1, i1, r2, i2;
+ float rr, ii;
+public:
+ void getdata(int a, int b, int c, int d);
+ void putdata();
+};
+void arithmetic::getdata(int a, int b, int c, int d){
+ r1 = a;
+ i1 = b;
+ r2 = c;
+ i2 = d;
+}
+void arithmetic::putdata(){
+ cout << "First Complex Number = " << r1 << " + " << i1 << "i" << endl;
+ cout << "Second Complex Number = " << r2 << " + " << i2 << "i" << endl;
+ cout << "\nAddition = "
+ << (r1 + r2) << " + " << (i1 + i2) << "i";
+ cout << "\nSubtraction = "
+ << (r1 - r2) << " + " << (i1 - i2) << "i";
+ cout << "\nMultiplication = "
+ << (r1 * r2 - i1 * i2) << " + "
+ << (r1 * i2 + i1 * r2) << "i";
+ float den = r2 * r2 + i2 * i2;
+ if (den != 0) {
+ rr = (float)(r1 * r2 + i1 * i2) / den;
+ ii = (float)(i1 * r2 - r1 * i2) / den;
+ cout << "\nDivision = "
+ << rr << " + " << ii << "i";
+ }
+ else {
+ cout << "\nDivision not possible.";
+ }
+}
+int main()
+{
+ arithmetic a;
+ a.getdata(4, 5, 2, 3);
+ a.putdata();
+ return 0;
+}
