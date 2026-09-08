@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+    float real, imag;
+
+public:
+    void getData()
+    {
+        cout << "Enter real and imaginary parts: ";
+        cin >> real >> imag;
+    }
+
+    void display()
+    {
+        if (imag >= 0)
+            cout << real << " + " << imag << "i";
+        else
+            cout << real << " - " << -imag << "i";
+    }
+
+    Complex divide(Complex c)
+    {
+        Complex result;
+        float denominator = c.real * c.real + c.imag * c.imag;
+
+        result.real = (real * c.real + imag * c.imag) / denominator;
+        result.imag = (imag * c.real - real * c.imag) / denominator;
+
+        return result;
+    }
+};
+
+int main()
+{
+    Complex c1, c2, result;
+
+    cout << "Enter first complex number:\n";
+    c1.getData();
+
+    cout << "Enter second complex number:\n";
+    c2.getData();
+
+    result = c1.divide(c2);
+
+    cout << "\nResult of division = ";
+    result.display();
+
+    return 0;
+}
