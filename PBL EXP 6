@@ -1,0 +1,75 @@
+#include <iostream>              // Include input-output library
+using namespace std;             // Use standard namespace
+
+class complex                       // Define complex class
+{
+    int real, img;                // Store real and imaginary parts
+
+public:
+
+    complex(int r = 0, int i = 0) // Constructor with default values
+    {
+        real = r;                 // Assign real part
+        img = i;                  // Assign imaginary part
+    }
+
+    void display();               // Declare display function
+
+    complex operator/(complex);   // Overload division operator
+};
+
+void complex::display()           // Define display function
+{
+    int i;                        // Declare temporary variable
+
+    if(img > 0)                   // Check positive imaginary part
+        cout << real << "+i" << img << endl; // Display positive imaginary
+    else
+    {
+        i = -img;                                  // Convert imaginary part to positive
+        cout << real << "-i" << i << endl;          // Display negative imaginary
+    }
+}
+
+complex complex::operator/(complex c1)                           // Define division operator
+{
+    complex div;                                                 // Create result object
+
+    int denominator;                                             // Declare denominator variable
+
+    denominator = c1.real * c1.real + c1.img * c1.img;           // Calculate denominator
+
+    div.real = (real * c1.real + img * c1.img) / denominator;     // Calculate real part
+
+    div.img = (img * c1.real - real * c1.img) / denominator;      // Calculate imaginary part
+
+    return div;                                                   // Return division result
+}
+
+int main()                         // Start main function
+{
+    int r1, i1, r2, i2;            // Declare input variables
+
+    cout << "Enter real part of first complex number: ";                  // Ask first real part
+    cin >> r1;                                                            // Read first real part
+
+    cout << "Enter imaginary part of first complex number: ";              // Ask first imaginary part
+    cin >> i1;                                                             // Read first imaginary part
+
+    cout << "Enter real part of second complex number: ";                  // Ask second real part
+    cin >> r2;                                                             // Read second real part
+
+    cout << "Enter imaginary part of second complex number: ";            // Ask second imaginary part
+    cin >> i2;                                                            // Read second imaginary part
+
+    complex c1(r1, i1);                                                   // Create first complex number
+    complex c2(r2, i2);                                                   // Create second complex number
+    complex c3;                     // Create result object
+
+    c3 = c1 / c2;                   // Divide two complex numbers
+
+    cout << "Division is: ";        // Display result message
+    c3.display();                   // Show division result
+
+    return 0;                       // End program
+}
