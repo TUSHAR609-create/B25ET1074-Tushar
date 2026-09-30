@@ -1,0 +1,75 @@
+#include <iostream>      // Input-output
+#include <cstring>       // C-string functions
+using namespace std;
+
+class MyString
+{
+    char *str;            // Character pointer
+
+public:
+
+    MyString()             // Default constructor
+    {
+        str = new char[1]; // Allocate memory
+        str[0] = '\0';     // Store null character
+    }
+
+    MyString(const char *s) // Parameterized constructor
+    {
+        str = new char[strlen(s) + 1]; // Allocate memory
+        strcpy(str, s);                // Copy string
+    }
+
+    MyString(const MyString &old_object) // Copy constructor
+    {
+        str = new char[strlen(old_object.str) + 1]; // Allocate memory
+        strcpy(str, old_object.str);                // Copy string
+    }
+
+    ~MyString()             // Destructor
+    {
+        delete[] str;       // Free memory
+    }
+
+    void accept()           // Accept function
+    {
+        char temp[100];     // Temporary string
+
+        cout << "Enter string: ";
+        cin.getline(temp, 100); // Read string
+
+        delete[] str;       // Free old memory
+
+        str = new char[strlen(temp) + 1]; // Allocate memory
+        strcpy(str, temp);                // Copy string
+    }
+
+    void display()          // Display function
+    {
+        cout << "String: " << str << endl; // Display string
+    }
+};
+
+int main()
+{
+    MyString s1;            // Default constructor
+
+    cout << "Default Constructor:" << endl;
+    s1.display();           // Display string
+
+    cout << "\nAccept Function:" << endl;
+    s1.accept();            // Accept string
+    s1.display();           // Display string
+
+    MyString s2("Hello C++"); // Parameterized constructor
+
+    cout << "\nParameterized Constructor:" << endl;
+    s2.display();             // Display string
+
+    MyString s3(s2);           // Copy constructor
+
+    cout << "\nCopy Constructor:" << endl;
+    s3.display();              // Display string
+
+    return 0;                  // End program
+}
