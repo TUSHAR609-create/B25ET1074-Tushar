@@ -1,0 +1,87 @@
+
+#include <iostream>
+using namespace std;
+
+// Base class 1: Stores employee basic information
+class Employee
+{
+protected:
+    int id;             // Stores employee ID
+    string name;       // Stores employee name
+
+public:
+    // Function to input employee details
+    void getEmployee()
+    {
+        cout << "Enter Employee ID: ";
+        cin >> id;
+
+        cout << "Enter Employee Name: ";
+        cin >> name;
+    }
+};
+
+// Base class 2: Stores attendance information
+class Attendance
+{
+protected:
+    int totalDays;     // Stores total working days
+    int presentDays;   // Stores number of present days
+
+public:
+    // Function to input attendance details
+    void getAttendance()
+    {
+        cout << "Enter Total Working Days: ";
+        cin >> totalDays;
+
+        cout << "Enter Present Days: ";
+        cin >> presentDays;
+    }
+};
+
+// Derived class: Inherits from both Employee and Attendance
+// This is called multiple inheritance
+class EmployeeAttendance : public Employee, public Attendance
+{
+public:
+    // Function to calculate and display details
+    void display()
+    {
+        float percentage;   // Stores attendance percentage
+
+        // Calculate attendance percentage
+        percentage = (float)presentDays / totalDays * 100;
+
+        // Display employee details
+        cout << "\n--- Employee Details ---" << endl;
+        cout << "Employee ID: " << id << endl;
+        cout << "Employee Name: " << name << endl;
+
+        // Display attendance details
+        cout << "Total Working Days: " << totalDays << endl;
+        cout << "Present Days: " << presentDays << endl;
+
+        // Display calculated attendance percentage
+        cout << "Attendance Percentage: "
+             << percentage << "%" << endl;
+    }
+};
+
+// Main function
+int main()
+{
+    // Create an object of derived class
+    EmployeeAttendance emp;
+
+    // Input employee information
+    emp.getEmployee();
+
+    // Input attendance information
+    emp.getAttendance();
+
+    // Calculate and display attendance
+    emp.display();
+
+    return 0;   // End of program
+}
