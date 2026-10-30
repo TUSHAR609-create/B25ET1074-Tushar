@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string source, destination, content;
+    char ch;
+
+    // Take source and destination file names
+    cout << "Enter source file name: ";
+    cin >> source;
+
+    cout << "Enter destination file name: ";
+    cin >> destination;
+
+    // Create source file
+    ofstream fout(source);
+
+    // Take content from user
+    cout << "Enter content for source file: ";
+    cin.ignore();
+    getline(cin, content);
+
+    fout << content;
+    fout.close();
+
+    // Open source file for reading
+    ifstream fin(source);
+
+    // Open destination file for writing
+    ofstream fout2(destination);
+
+    // Copy contents character by character
+    while (fin.get(ch))
+    {
+        fout2.put(ch);
+    }
+
+    // Close both files
+    fin.close();
+    fout2.close();
+
+    // Display success message
+    cout << "File copied successfully!" << endl;
+
+    return 0;
+}
