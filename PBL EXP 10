@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    double num;
+
+    // Ask the user to enter a number
+    cout << "Enter a number: ";
+    cin >> num;
+
+    // Try block contains code that may cause an exception
+    try
+    {
+        // Check whether the entered number is negative
+        if (num < 0)
+        {
+            throw num;  // Throw exception if number is negative
+        }
+
+        // Calculate and display square root
+        cout << "Square root = " << sqrt(num) << endl;
+    }
+
+    // Catch block handles the exception
+    catch (double x)
+    {
+        // Display error message for negative number
+        cout << "Exception: Cannot calculate square root of a negative number!" << endl;
+    }
+
+    // End of program
+    return 0;
+}
