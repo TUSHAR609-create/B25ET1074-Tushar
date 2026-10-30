@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Vehicle
+{
+public:
+    // Virtual function
+    virtual void showDetails()
+    {
+        cout << "This is a Vehicle." << endl;
+    }
+};
+
+// Derived class Car
+class Car : public Vehicle
+{
+public:
+    // Overriding base class function
+    void showDetails()
+    {
+        cout << "This is a Car." << endl;
+        cout << "Number of wheels: 4" << endl;
+    }
+};
+
+// Derived class Bike
+class Bike : public Vehicle
+{
+public:
+    // Overriding base class function
+    void showDetails()
+    {
+        cout << "This is a Bike." << endl;
+        cout << "Number of wheels: 2" << endl;
+    }
+};
+
+// Main function
+int main()
+{
+    // Base class pointer
+    Vehicle *v;
+
+    // Creating objects
+    Car c;
+    Bike b;
+
+    // Pointer points to Car object
+    v = &c;
+    v->showDetails();
+
+    // Pointer points to Bike object
+    v = &b;
+    v->showDetails();
+
+    return 0;
+}
