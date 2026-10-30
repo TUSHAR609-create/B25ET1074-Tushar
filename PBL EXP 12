@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+// Creating first namespace
+namespace First
+{
+    void display(int num)
+    {
+        cout << "First Namespace: " << num << endl;
+    }
+}
+
+// Creating second namespace
+namespace Second
+{
+    void display(int num)
+    {
+        cout << "Second Namespace: " << num << endl;
+    }
+}
+
+int main()
+{
+    int a, b;
+
+    // Taking input from user
+    cout << "Enter a number for First Namespace: ";
+    cin >> a;
+
+    cout << "Enter a number for Second Namespace: ";
+    cin >> b;
+
+    // Calling functions using namespace name
+    First::display(a);
+    Second::display(b);
+
+    return 0;  // End of program
+}
